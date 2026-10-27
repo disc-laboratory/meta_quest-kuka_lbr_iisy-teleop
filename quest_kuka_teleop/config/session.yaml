@@ -1,0 +1,13 @@
+# Per-session metadata copied into every episode's meta.json. Fill before collection.
+operator: ""
+task: "brick_place"
+instruction: ""
+design_id: ""
+selected_slot_id: ""
+desired_brick_pose_wall: null      # {xyz: [...], quat_xyzw: [...]} final OBJECT pose
+wall_to_base_calibration_id: ""
+wall_to_base: null                 # {xyz, quat_xyzw}
+brick_dimensions_m: null           # [x, y, z]
+camera_calibration_ids: {}
+wrist_camera_to_tool: null
+camera_topics: []                  # e.g. /scene_camera/color/image_raw, ... (D455 unconfirmed)

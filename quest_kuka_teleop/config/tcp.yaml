@@ -1,0 +1,9 @@
+# tool0 -> pendant Finger Center for the currently mounted SCHUNK ESG-C K060.
+# Derived from stationary pendant World poses, checked against R760 forward
+# kinematics at A1..A6 = [2.36,-111.28,101.85,-1.89,61.73,1.85] degrees.
+# ROS tool0 matches pendant Flange; ROS flange has a different orientation.
+# Nominal offset rounded to 0.1 mm; not an independent physical TCP calibration.
+# Revalidate after changing fingers or mounting. Evidence kept in the lab internal report tcp_from_pendant_20261013.json.
+tool_geometry_version: "schunk-k060-pendant-20261013-v1"
+tcp_xyz: [0.0, 0.0, 0.1245]
+tcp_rpy: [0.0, 0.0, 0.0]

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>quest_kuka_teleop</name>
+  <version>0.1.0</version>
+  <description>Quest 3 -> MoveIt Servo -> KUKA iiQKA EAC teleoperation and episode recording.</description>
+  <maintainer email="ananthar002@e.ntu.edu.sg">ananthu</maintainer>
+  <license>Apache-2.0</license>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>moveit_msgs</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>moveit_servo</exec_depend>
+  <exec_depend>kuka_iiqka_eac_driver</exec_depend>
+  <exec_depend>kuka_lbr_iisy_support</exec_depend>
+  <exec_depend>rosbag2_storage_mcap</exec_depend>
+  <exec_depend>python3-scipy</exec_depend>
+  <exec_depend>python3-serial</exec_depend>
+  <test_depend>python3-pytest</test_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

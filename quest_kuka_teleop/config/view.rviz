@@ -1,0 +1,44 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Views
+    Name: Views
+Visualization Manager:
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Description Topic:
+        Value: /robot_description
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: false
+      Show Names: true
+    - Class: rviz_default_plugins/Axes
+      Name: Tool tip axes (RGB = XYZ)
+      Enabled: true
+      Reference Frame: gripper_tcp
+      Length: 0.15
+      Radius: 0.008
+    - Class: rviz_default_plugins/Pose
+      Name: ServoTarget
+      Enabled: true
+      Topic:
+        Value: /servo_node/pose_target_cmds
+  Global Options:
+    Fixed Frame: base_link
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 2.0
+      Focal Point: {X: 0.3, Y: 0.0, Z: 0.3}
+      Pitch: 0.5
+      Yaw: 3.6

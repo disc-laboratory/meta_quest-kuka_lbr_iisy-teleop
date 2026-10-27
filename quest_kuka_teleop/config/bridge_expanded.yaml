@@ -1,0 +1,40 @@
+# Tuned profile used for physical teleop (expanded workspace, faster motion).
+# Pass with bridge_config:=$(ros2 pkg prefix --share quest_kuka_teleop)/config/bridge_expanded.yaml
+quest_bridge:
+  ros__parameters:
+    planning_frame: base_link
+    tcp_frame: gripper_tcp
+    hand: right
+    base_from_quest:
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+    scale: 0.9
+    rate_hz: 100.0
+    max_input_age: 0.15
+    max_input_hold: 0.15
+    max_joint_state_age: 0.1
+    stale_pose_count: 30
+    max_translation_jump: 0.15
+    max_rotation_jump: 0.8
+    max_lead: 0.01
+    max_lead_angle: 0.05
+    workspace_min:
+    - -0.9
+    - -0.9
+    - 0.05
+    workspace_max:
+    - 0.9
+    - 0.9
+    - 1.1
+    demo_bounds: false
+    enforce_workspace: true
+    require_servo_status: true
+    max_target_speed: 0.65
+    max_target_angular_speed: 0.55

@@ -1,0 +1,20 @@
+# colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# Run outputs
+reports/
+data/
+*.mcap
+*.jsonl
+
+# Editors
+.vscode/
+.idea/

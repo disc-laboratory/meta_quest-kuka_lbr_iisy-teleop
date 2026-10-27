@@ -1,0 +1,21 @@
+quest_bridge:
+  ros__parameters:
+    planning_frame: base_link
+    tcp_frame: gripper_tcp
+    hand: right                   # clutch = <hand>_grip, gripper toggle = <hand>_trigger
+    # base_from_quest: row-major 3x3, Quest FLU -> base_link. Identity is a
+    # PLACEHOLDER: it assumes the operator faces along robot +x. Calibrate.
+    base_from_quest: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+    scale: 0.3
+    rate_hz: 100.0
+    max_input_age: 0.15           # pose AND button receipt age, s: above this, pause motion
+    max_input_hold: 0.5           # above this, drop the clutch (fresh grip release needed)
+    max_joint_state_age: 0.1
+    stale_pose_count: 30          # identical consecutive poses (0.5 s) => tracking presumed lost
+    max_translation_jump: 0.15
+    max_rotation_jump: 0.8
+    max_lead: 0.03                # target clamped to within 3 cm of measured TCP
+    max_lead_angle: 0.25          # rad
+    # Workspace box in base_link, metres. Conservative placeholder; set from the cell.
+    workspace_min: [0.25, -0.35, 0.10]
+    workspace_max: [0.65, 0.35, 0.60]

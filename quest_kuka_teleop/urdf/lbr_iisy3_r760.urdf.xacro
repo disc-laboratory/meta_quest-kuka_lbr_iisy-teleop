@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- Servo/MoveIt description: the stock R760 plus a gripper TCP frame.
+     The driver keeps using the stock description; tool0->gripper_tcp is ALSO
+     published as a static TF by teleop.launch.py from the same tcp.yaml values.
+     Default TCP = tool0 (zero offset) until the Schunk + custom fingers are measured. -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lbr_iisy3_r760">
+  <xacro:include filename="$(find kuka_lbr_iisy_support)/urdf/lbr_iisy3_r760_macro.xacro"/>
+  <xacro:arg name="tcp_xyz" default="0 0 0"/>
+  <xacro:arg name="tcp_rpy" default="0 0 0"/>
+  <!-- Optional measured collision envelope; disabled for existing launches. -->
+  <xacro:arg name="workspace_collision_model" default="false"/>
+  <xacro:arg name="table_top_z" default="-0.05"/>
+  <xacro:arg name="tool_envelope_radius" default="0.0"/>
+  <xacro:arg name="tool_envelope_length" default="0.0"/>
+  <link name="world"/>
+  <xacro:kuka_lbr_iisy3_r760_robot prefix="" package_name="kuka_lbr_iisy_support"/>
+  <joint name="world-base_link" type="fixed">
+    <parent link="world"/><child link="base_link"/><origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="gripper_tcp"/>
+  <joint name="tool0-gripper_tcp" type="fixed">
+    <parent link="tool0"/><child link="gripper_tcp"/><origin xyz="$(arg tcp_xyz)" rpy="$(arg tcp_rpy)"/>
+  </joint>
+  <xacro:if value="$(arg workspace_collision_model)">
+    <!-- Oversize tabletop slab: deliberately disallows reaching below the
+         tabletop even beyond its edges. Coordinates relative to mounting base. -->
+    <link name="table">
+      <collision><geometry><box size="4 4 1"/></geometry></collision>
+      <visual><geometry><box size="4 4 1"/></geometry>
+        <material name="table_gray"><color rgba="0.4 0.4 0.4 0.35"/></material>
+      </visual>
+    </link>
+    <joint name="base-table" type="fixed">
+      <parent link="base_link"/><child link="table"/>
+      <origin xyz="0 0 ${float('$(arg table_top_z)') - 0.5}"/>
+    </joint>
+    <!-- Cylinder dimensions include margin and must enclose the entire mounted
+         gripper, open fingers and attachments, not only the finger center. -->
+    <link name="tool_envelope">
+      <collision><geometry><cylinder radius="$(arg tool_envelope_radius)" length="$(arg tool_envelope_length)"/></geometry></collision>
+      <visual><geometry><cylinder radius="$(arg tool_envelope_radius)" length="$(arg tool_envelope_length)"/></geometry>
+        <material name="tool_envelope_orange"><color rgba="1 0.5 0 0.35"/></material>
+      </visual>
+    </link>
+    <joint name="tool0-envelope" type="fixed">
+      <parent link="tool0"/><child link="tool_envelope"/>
+      <origin xyz="0 0 ${float('$(arg tool_envelope_length)') / 2 - 0.02}"/>
+    </joint>
+  </xacro:if>
+</robot>
